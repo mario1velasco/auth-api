@@ -1,6 +1,9 @@
-export function runAsyncWrapper(callback) {
-  return function (req, res, next) {
-    callback(req, res, next)
-      .catch(next)
-  }
+const runAsyncWrapper = fn =>
+  (req, res, next) => {
+    Promise.resolve(fn(req, res, next))
+      .catch(next);
+  };
+
+module.exports = {
+  runAsyncWrapper
 }
