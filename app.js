@@ -1,19 +1,36 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+/**
+ * Required External Modules
+ */
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
+/**
+ * App Variables
+ */
 var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users.routes');
 
+/**
+ *  App Configuration
+ */
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ *  Ddbb Configuration
+ */
+require('./config/db.config');
+
+/**
+ * Routes Definitions
+ */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
