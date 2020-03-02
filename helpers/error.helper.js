@@ -1,3 +1,6 @@
+/**
+ * Constructor
+ */
 class ErrorHandler extends Error {
   constructor(statusCode, message) {
     super();
@@ -5,11 +8,10 @@ class ErrorHandler extends Error {
     this.message = message;
   }
 }
-module.exports = {
-  ErrorHandler,
-  handleError
-}
 
+/**
+ * Instance methods
+ */
 function handleError(err, res) {
   const status = err.statusCode || 500
   res.status(status);
@@ -19,10 +21,12 @@ function handleError(err, res) {
     statusCode: status,
     errors: err.errors
   });
-  // const { statusCode, message } = err;
-  // res.status(statusCode).json({
-  //   status: "error",
-  //   statusCode,
-  //   message
-  // });
 };
+
+/**
+ * Export
+ */
+module.exports = {
+  ErrorHandler,
+  handleError
+}

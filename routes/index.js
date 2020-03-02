@@ -1,9 +1,17 @@
+/**
+ * Required External Modules
+ */
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/**
+ * Routes
+ */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/**
+ * Export
+ */
 module.exports = router;

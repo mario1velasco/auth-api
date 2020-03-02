@@ -1,9 +1,26 @@
+/**
+ * Models
+ */
 const User = require('../models/user.model');
 
-let buildUserFromRequest = async (req) => {
-  return await console.log("AAAAAA");
+/**
+ * Instance methods
+ */
+let createUserFromRequest = async (req) => {
+  return await new User({
+    email: req.body.email,
+    password: req.body.password,
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    telephone: req.body.telephone,
+    about: req.body.about,
+  });
 };
 
+/**
+ * Export
+ */
 module.exports = {
-  buildUserFromRequest
+  createUserFromRequest
 }

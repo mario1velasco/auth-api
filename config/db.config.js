@@ -1,5 +1,12 @@
+/**
+ * Required External Modules
+ */
 require("dotenv").config();
 const mongoose = require('mongoose');
+
+/**
+ * Constants
+ */
 const MONGODB = `${process.env.MONGODB_URI}${process.env.DB_NAME}`;
 
 mongoose.Promise = Promise;

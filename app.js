@@ -6,14 +6,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-
 /**
  * App Variables
  */
 var app = express();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.routes');
-const { handleError } = require('./helpers/error')
+const { handleError } = require('./helpers/error.helper')
 
 /**
  *  App Configuration

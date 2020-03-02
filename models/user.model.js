@@ -1,5 +1,12 @@
+/**
+ * Required External Modules
+ */
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+
+/**
+ * Constants
+ */
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = new mongoose.Schema({
@@ -69,4 +76,7 @@ userSchema.methods.checkPassword = function (password) {
 }
 
 const User = mongoose.model('User', userSchema);
+/**
+ * Export
+ */
 module.exports = User;
