@@ -13,6 +13,7 @@ const logger = require('morgan');
 var app = express();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.routes');
+const { handleError } = require('./helpers/error')
 
 /**
  *  App Configuration
@@ -33,5 +34,9 @@ require('./config/db.config');
  */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
 
 module.exports = app;
