@@ -19,7 +19,7 @@ const secureMiddleware = require('../middlewares/secure.middleware');
  */
 router.post('/authenticate', sessionController.authenticate);
 // router.delete('/', sessionController.destroy);
-// router.delete('/', secureMiddleware.isAuthenticated, sessionController.destroy);
+router.delete('/', secureMiddleware.isAuthenticated, sessionController.destroy);
 
 /**
  * Export

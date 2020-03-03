@@ -1,18 +1,28 @@
-module.exports.isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    console.log("is Authenticated");
-    next();
-  } else {
-    console.log("is NOT Authenticated");
-    res.status(401).json({
-      message: 'User is not authenticate'
-    });
-  }
-};
+/**
+ * Required External Modules
+ */
+const passport = require('passport');
 
-module.exports.isUserWhoCreated = (req, res, next) => {
-  console.log(`USER = ${JSON.stringify(req.user)}`);
-  console.log(`Params = ${JSON.stringify(req.params)}`);
-  console.log(`Body = ${JSON.stringify(req.body)}`);
-  next();
+/**
+ * Helpers
+ */
+const { ErrorHandler } = require('../helpers/error.helper')
+
+module.exports.isAuthenticated = (req,res,next) => {
+  passport.authenticate('jwt', (err, user, info) => {
+      console.log("ejecutando isAuthenticated jwt");
+      // console.log(`err = ${err}`);
+      // console.log(`user = ${user}`);
+      // console.log(`info = ${info}`);
+      //si hubo un error relacionado con la validez del token (error en su firma, caducado, etc)
+      if (info) { return next(new ErrorHandler(401, info.message)); }
+      //si hubo un error en la consulta a la base de datos
+      if (err) { return next(err); }
+      //si el token está firmado correctamente pero no pertenece a un usuario existente
+      if (!user) { return next(new ErrorHandler(401, "You are not allowed to access.")); }
+
+      //inyectamos los datos de usuario en la request
+      req.user = user;
+      next();
+  })(req, res, next);
 };
