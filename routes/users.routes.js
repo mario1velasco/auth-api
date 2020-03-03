@@ -8,7 +8,11 @@ const router = express.Router();
  * Controllers
  */
 const usersController = require('../controllers/users.controller');
-// const secureMiddleware = require('../middleware/secure.middleware');
+
+/**
+ * Middleware
+ */
+// const secureMiddleware = require('../middlewares/secure.middleware');
 
 /**
  * Routes
