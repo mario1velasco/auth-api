@@ -1,13 +1,11 @@
-p, alice, data1, read
-p, bob, data2, write
-p, data2_admin, data2, read
-p, data2_admin, data2, write
+p, public, /users, POST
+p, public, /session/authenticate, POST
 
-p, guest, /session/authenticate, post
-p, user, /session, delete
-p, admin, /users, get
+p, user, /users/{id}, GET
+p, user, /users/{id}, PUT
+p, user, /session, DELETE
 
-g, alice, data2_admin
+p, admin, /users/{id}, DELETE
 
-g, user, guest
+g, user, public
 g, admin, user

@@ -19,7 +19,7 @@ const rbacMiddleware = require('../middlewares/rbac.middleware');
  * Routes
  */
 router.post('/authenticate', sessionController.authenticate);
-router.delete('/', rbacMiddleware.canRoleAccess, sessionController.destroy);
+router.delete('/', rbacMiddleware.canRoleAccess, secureMiddleware.isAuthenticated, sessionController.destroy);
 // router.delete('/', sessionController.destroy);
 // router.delete('/', secureMiddleware.isAuthenticated, sessionController.destroy);
 

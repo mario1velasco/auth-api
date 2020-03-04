@@ -28,8 +28,8 @@ module.exports.authenticate = asyncWrapper(async (req, res, next) => {
         username: user.email,
         // 1 hora
         exp: Math.floor(Date.now() / 1000) + (60 * 60),
-        // 6 segundos
-        // exp: Math.floor(Date.now() / 1000) + (6),
+        // 60 segundos
+        // exp: Math.floor(Date.now() / 1000) + (60),
       };
       const token = jwt.sign(
         payload,
