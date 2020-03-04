@@ -1,0 +1,13 @@
+p, alice, data1, read
+p, bob, data2, write
+p, data2_admin, data2, read
+p, data2_admin, data2, write
+
+p, guest, /session/authenticate, post
+p, user, /session, delete
+p, admin, /users, get
+
+g, alice, data2_admin
+
+g, user, guest
+g, admin, user
