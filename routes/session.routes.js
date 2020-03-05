@@ -12,14 +12,14 @@ const sessionController = require('../controllers/session.controller');
 /**
  * Middleware
  */
-const secureMiddleware = require('../middlewares/secure.middleware');
-const rbacMiddleware = require('../middlewares/rbac.middleware');
+const {isAuthenticated} = require('../middlewares/secure.middleware');
+const {canRoleAccess} = require('../middlewares/rbac.middleware');
 
 /**
  * Routes
  */
 router.post('/authenticate', sessionController.authenticate);
-router.delete('/', rbacMiddleware.canRoleAccess, secureMiddleware.isAuthenticated, sessionController.destroy);
+router.delete('/', canRoleAccess, isAuthenticated, sessionController.destroy);
 // router.delete('/', sessionController.destroy);
 // router.delete('/', secureMiddleware.isAuthenticated, sessionController.destroy);
 

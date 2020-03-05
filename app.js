@@ -38,9 +38,9 @@ require('./config/passport.config').setup(passport);
 /**
  * Routes Definitions
  */
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/session', sessionRoutes);
+app.use('/api/', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/session', sessionRoutes);
 
 /**
  * Error handler

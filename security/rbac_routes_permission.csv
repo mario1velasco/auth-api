@@ -1,0 +1,11 @@
+p, public, /api/users, POST
+p, public, /api/session/authenticate, POST
+
+p, user, /api/users/{id}, GET
+p, user, /api/users/{id}, PUT
+p, user, /api/session, DELETE
+
+p, admin, /api/users/{id}, DELETE
+
+g, user, public
+g, admin, user

@@ -10,18 +10,18 @@ const {resolve} = require("path")
 const { ErrorHandler } = require('../helpers/error.helper')
 
 module.exports.canRoleAccess = async (req,res,next) => {
-  console.log("ejecutando canRoleAccess RBAC");
+  console.log("Execute middleware canRoleAccess RBAC");
   // Casbin crea un plan con las rutas accesibles para cada rol
   const enforcer = await newEnforcer(
     resolve('../auth-api/security/rbac_model.conf'),
-    resolve('../auth-api/security/rbac_policy.csv')
+    resolve('../auth-api/security/rbac_routes_permission.csv')
   );
   const role = req.get('role') || 'public';
   const method = req.method;
   const url = req.baseUrl;
-  // console.log(`role = ${role}`);
-  // console.log(`method = ${method}`);
-  // console.log(`url = ${url}`);
+  console.log(`role = ${role}`);
+  console.log(`method = ${method}`);
+  console.log(`url = ${url}`);
 
   // Se chequea que el rol pueda acceder
   const canAccess = await enforcer.enforce(role, url, method);
